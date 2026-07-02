@@ -1,0 +1,40 @@
+name: first
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        description: "This tells which interpretor to setup"
+        type: string
+        required: false
+        default: 15
+
+      run_tests:
+        description: "This is an input to run tests"
+        type: boolian
+        default: true
+
+
+jobs:
+  reuse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
+      - name: setup interpretor
+        run: actions/setup-python@v5
+        with:
+          python_version: ${{ input.python_version }}
+
+      - name: Install dependencies
+        run: |
+          python -m intsall pip --upgrade-pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: run tests
+        if: ${{ inputs.run_tests }}
+        run: pytest
