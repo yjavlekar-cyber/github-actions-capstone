@@ -13,10 +13,10 @@ jobs:
   second:
     needs: first
     uses: ./.github/workflows/reusable-docker.yml
-      with:
-        tag: |
-          ${{ inputs.image }}:latest
-          ${{ inputs.image }}:sha-${{ github.sh }}
+    with:
+      tag: |
+        ${{ inputs.image }}:latest
+        ${{ inputs.image }}:sha-${{ github.sha }}
 
 
   deploy:

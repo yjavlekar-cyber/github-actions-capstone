@@ -54,4 +54,5 @@ jobs:
 
       - name: set image output
         id: image
-        run: "image_url=docker.io/${{ inputs.image }}:${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+        run: echo "image_url=docker.io/${{ inputs.image }}:${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+
