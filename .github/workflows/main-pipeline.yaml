@@ -33,14 +33,14 @@ jobs:
 
 
       - name: Run trivy vulenrabilities
-         id: view
-         uses: aquasecurity/trivy-action@v0.36.0
-         with:
-           image-ref: ${{ needs.second.outputs.my-outputs }}
-            format: 'table'
-            output: 'trivy.txt'
-            severity: 'CRITICAL,HIGH'
-            exit-code: '1'
+        id: view
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: ${{ needs.second.outputs.my-outputs }}
+          format: 'table'
+          output: 'trivy.txt'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
 
 
       - name: upload this to report
