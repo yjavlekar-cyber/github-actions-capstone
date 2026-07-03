@@ -15,6 +15,14 @@ jobs:
       - name: run
         run: docker run -d -p 8000:8000 yjawlekar/my-app:latest
 
+      - name: debug container state
+        run: |
+          echo "--- docker ps ---"
+          docker ps -a
+          echo "--- docker logs ---"
+          docker logs $(docker ps -aq --filter ancestor=yjawlekar/my-app:latest)
+
+
       - name: health check
         run: |
           sleep 5s
