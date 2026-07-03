@@ -1,0 +1,33 @@
+name: deployin_in_container
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cont:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: pull image
+        run: docker pull yjawlekar/my-app:latest
+
+
+      - name: run
+        run: docker run -d -p 8000:8000 yjawlekar/my-app:latest
+
+      - name: health check
+        run: |
+          sleep 5s
+          if curl -s -f http://localhost:8000/health > /dev/null ; then
+            echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
+            echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
+            echo "- Status: PASSED" >> $GITHUB_STEP_SUMMARY
+            echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
+            echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
+            echo "- Status: FAILED" >> $GITHUB_STEP_SUMMARY
+            echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+
