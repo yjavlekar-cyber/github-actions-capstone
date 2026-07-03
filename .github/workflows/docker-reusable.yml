@@ -25,7 +25,7 @@ on:
 
     outputs:
       my-outputs:
-        value: ${{ jobs.reuse-sec.outputs.my-outputs }}
+        value: ${{ jobs.reuse-sec.outputs.my_job_output }}
 
 
 
