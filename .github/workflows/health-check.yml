@@ -23,7 +23,7 @@ jobs:
           docker logs my-container
 
       - name: wait for container
-        run: sleep 5
+        run: sleep 15
 
 
 
