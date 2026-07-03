@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      my_job_output: ${{ steps.image.outputs.my_job_output }}
+      my_job_output: ${{ steps.image.outputs.image_url }}
 
     steps:
       - name: code checkout
