@@ -31,10 +31,10 @@ jobs:
         id: health
         run: |
           if curl -s -f http://localhost:8000/health > /dev/null ; then
-            echo "- Status: PASSED" >> $GITHUB_OUTPUT
+            echo "- Status=PASSED" >> $GITHUB_OUTPUT
             echo "Health check PASSED"
           else
-            echo "- Status: FAILED" >> $GITHUB_OUTPUT
+            echo "- Status=FAILED" >> $GITHUB_OUTPUT
             echo "Health check FAILED"
           fi
       
