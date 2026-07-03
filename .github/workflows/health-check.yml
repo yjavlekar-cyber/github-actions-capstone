@@ -13,29 +13,51 @@ jobs:
 
 
       - name: run
-        run: docker run -d -p 8000:8000 yjawlekar/my-app:latest
+        run: docker run -d --name my-container -p 8000:8000 yjawlekar/my-app:latest
 
       - name: debug container state
         run: |
           echo "--- docker ps ---"
           docker ps -a
           echo "--- docker logs ---"
-          docker logs $(docker ps -q)
+          docker logs my-container
+
+      - name: wait for container
+        run: sleep 5
+
 
 
       - name: health check
+        id: health
         run: |
-          sleep 30s
           if curl -s -f http://localhost:8000/health > /dev/null ; then
-            echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
-            echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
-            echo "- Status: PASSED" >> $GITHUB_STEP_SUMMARY
-            echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+            echo "- Status: PASSED" >> $GITHUB_OUTPUT
+            echo "Health check PASSED"
           else
-            echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
-            echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
-            echo "- Status: FAILED" >> $GITHUB_STEP_SUMMARY
-            echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+            echo "- Status: FAILED" >> $GITHUB_OUTPUT
+            echo "Health check FAILED"
           fi
       
+
+      - name: stop and remove
+        if: always ()
+        run: |
+          docker stop my-container || true
+          docker rm my-container || true
+
+      - name: write summary
+        if: always ()
+        run: |
+          echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
+          echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
+          echo "status - ${{ steps.health.output.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+
+      - name: fail job if unhealthy
+        if: steps.health.output.status == 'Failed'
+        run: exit 1
+
+        
+        
+
 
