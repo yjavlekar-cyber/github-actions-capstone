@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
           echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
-          echo "status - ${{ steps.health.output.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "status - ${{ steps.health.outputs.status }}" >> $GITHUB_STEP_SUMMARY
           echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
 
       - name: fail job if unhealthy
