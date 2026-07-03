@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: second
     environment: production
-      env:
-        NODE-OPTIONS: "--no-deprecation"
+    env:
+      NODE-OPTIONS: "--no-deprecation"
     steps:
       - name: Image deploying to prodcution
         env:
