@@ -12,7 +12,7 @@ jobs:
 
   second:
     needs: first
-    uses: ./.github/workflows/reusable-docker.yml
+    uses: ./.github/workflows/docker-reusable.yml
     with:
       image: my-app
       tag: latest 
