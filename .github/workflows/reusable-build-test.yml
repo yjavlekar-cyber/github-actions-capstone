@@ -26,7 +26,7 @@ jobs:
       - name: setup interpretor
         uses: actions/setup-python@v5
         with:
-          python_version: ${{ input.python_version }}
+          python_version: ${{ inputs.python_version }}
 
       - name: Install dependencies
         run: |
