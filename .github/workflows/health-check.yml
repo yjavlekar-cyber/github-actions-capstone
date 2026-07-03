@@ -20,7 +20,7 @@ jobs:
           echo "--- docker ps ---"
           docker ps -a
           echo "--- docker logs ---"
-          docker logs $(docker ps -aq --filter ancestor=yjawlekar/my-app:latest)
+          docker logs $(docker ps -q)
 
 
       - name: health check
