@@ -43,7 +43,7 @@ jobs:
         id: view
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ${{ needs.second.outputs.my-outputs }}
+          image-ref: docker.io/${{ secrets.docker_username }}/ ${{ needs.second.outputs.my-outputs }}
           format: 'table'
           output: 'trivy.txt'
           severity: 'CRITICAL,HIGH'
