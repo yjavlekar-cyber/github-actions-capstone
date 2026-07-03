@@ -51,8 +51,8 @@ jobs:
         run: |
 
           docker build -t ${{ inputs.image }} .
-          docker tag ${{ secrets.docker_username }}/${{ inputs.image }}:${{ inputs.tag }}
-          docker push ${{ secrets.docker_token }}/${{ inputs.image }}:${{ inputs.tag }}
+          docker tag ${{ inputs.image }} ${{ secrets.docker_username }}/${{ inputs.image }}:${{ inputs.tag }}
+          docker push ${{ secrets.docker_username }}/${{ inputs.image }}:${{ inputs.tag }}
 
 
       - name: set image output
