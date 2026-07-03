@@ -25,7 +25,7 @@ jobs:
     needs: second
     environment: production
     env:
-      NODE-OPTIONS: "--no-deprecation"
+      node: --trace-deprecation
     steps:
       - name: Image deploying to prodcution
         env:
