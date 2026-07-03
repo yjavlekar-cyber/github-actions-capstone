@@ -25,7 +25,7 @@ jobs:
 
       - name: health check
         run: |
-          sleep 5s
+          sleep 30s
           if curl -s -f http://localhost:8000/health > /dev/null ; then
             echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
             echo "- Image: myapp:latest" >> $GITHUB_STEP_SUMMARY
