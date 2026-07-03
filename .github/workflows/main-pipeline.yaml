@@ -14,9 +14,8 @@ jobs:
     needs: first
     uses: ./.github/workflows/reusable-docker.yml
     with:
-      tag: |
-        ${{ inputs.image }}:latest
-        ${{ inputs.image }}:sha-${{ github.sha }}
+      image: my-app
+      tag: latest 
     secrets:
         docker_username: ${{ secrets.DOCKER_USERNAME }}
         docker_token: ${{ secrets.DOCKER_TOKEN }}
