@@ -17,11 +17,11 @@ on:
 
     secrets:
       DOCKER_USERNAME:
-        default: true
+        required: true
           
 
       DOCKER_TOKEN:
-        default: true
+        required: true
 
     outputs:
       my-outputs:
