@@ -14,13 +14,12 @@ jobs:
     needs: first
     uses: ./.github/workflows/reusable-docker.yml
     with:
-      secrets:
-        docker_username: ${{ secrets.DOCKER_USERNAME }}
-        docker_token: ${{ secrets.DOCKER_USERNAME }}
       tag: |
         ${{ inputs.image }}:latest
         ${{ inputs.image }}:sha-${{ github.sha }}
-
+    secrets:
+        docker_username: ${{ secrets.DOCKER_USERNAME }}
+        docker_token: ${{ secrets.DOCKER_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
