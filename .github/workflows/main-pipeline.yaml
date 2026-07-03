@@ -28,5 +28,5 @@ jobs:
     steps:
       - name: Image deploying to prodcution
         env:
-          image: ${{ needs.second.outputs.my_job_output }}
+          image: ${{ needs.second.outputs.my-outputs }}
         run: echo "Deploying image- $image to production"
