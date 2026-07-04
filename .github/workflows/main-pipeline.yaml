@@ -44,6 +44,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: '${{ secrets.docker_username }}/my-app:latest'
+          trivy-args: '--skip-version-check'
           format: 'table'
           output: 'trivy.txt'
           severity: 'CRITICAL,HIGH'
