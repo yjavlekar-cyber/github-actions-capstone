@@ -1,6 +1,4 @@
 name: second
-
-
 on:
   workflow_call:
     inputs:
@@ -9,7 +7,6 @@ on:
         required: false
         type: string
         default: my-app
-
       tag:
         description: "image-tag"
         default: latest
@@ -18,16 +15,12 @@ on:
     secrets:
       docker_username:
         required: true
-
-
       docker_token:
         required: true
 
     outputs:
       my-outputs:
         value: ${{ jobs.reuse-sec.outputs.my_job_output }}
-
-
 
 jobs:
   reuse-sec:
@@ -46,14 +39,12 @@ jobs:
           username: ${{ secrets.docker_username }}
           password: ${{ secrets.docker_token }}
 
-
       - name: docker build
         run: |
 
           docker build -t ${{ inputs.image }} .
           docker tag ${{ inputs.image }} ${{ secrets.docker_username }}/${{ inputs.image }}:${{ inputs.tag }}
           docker push ${{ secrets.docker_username }}/${{ inputs.image }}:${{ inputs.tag }}
-
 
       - name: set image output
         id: image
