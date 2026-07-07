@@ -34,6 +34,9 @@ jobs:
     env:
       node: --trace-deprecation
     steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
       - name: Image deploying to prodcution
         env:
           image: ${{ needs.second.outputs.my-outputs }}
