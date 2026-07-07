@@ -29,10 +29,10 @@ jobs:
           BRANCH_NAME="${{ github.head_ref }}"
           echo "PR checks passed for branch: $BRANCH_NAME"
 
-     - name: Check dependencies for vulnerabilites
-       uses: action/dependency-review-action@v4
-       with:
-         fail-on-severity: critical
+      - name: Check dependencies for vulnerabilites
+        uses: action/dependency-review-action@v4
+        with:
+          fail-on-severity: critical
 
 
         
