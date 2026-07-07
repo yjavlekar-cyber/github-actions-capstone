@@ -13,8 +13,6 @@ on:
         description: "This is an input to run tests"
         type: boolean
         default: true
-
-
 jobs:
   reuse:
     runs-on: ubuntu-latest
