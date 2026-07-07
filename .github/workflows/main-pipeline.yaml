@@ -5,6 +5,13 @@ on:
     branches: [ "main" ]
 
 
+permissions:
+  contents: read
+  pull-requests: write
+
+
+
+
 jobs:
   first:
     uses: ./.github/workflows/reusable-build-test.yml
